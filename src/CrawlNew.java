@@ -15,18 +15,17 @@ public class CrawlNew {
         scanner.useDelimiter("\\Z");
         String content = scanner.next();
         scanner.close();
-        // xoá các ký tự ngắt dòng (xuống dòng)
-        content = content.replaceAll("\\R", "");
         return content;
     }
     public static void main(String[] args) throws IOException {
         String content = getContentFrom("https://dantri.com.vn/the-gioi.htm");
         // Regex
         // tên công thức
-        Pattern p1 = Pattern.compile("<a data-utm=(.*?) href=(.*?) title=(.*?)>");
+        Pattern p1 = Pattern.compile("MainList\\|.*title=\"(.*?)\"");
+//        Pattern p1 = Pattern.compile("<a data-utm=\"Cate_TheGioi|.*title=\"(.*?)\">");
         Matcher m1 = p1.matcher(content);
         while (m1.find()) {
-            System.out.println(m1.group(3));
+            System.out.println(m1.group(1));
         }
     }
 }
